@@ -1,0 +1,87 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+user_interactions = []
+reading_times = []
+click_behaviors = []
+preferred_categories = {}
+user_feedback = []
+reading_history = []
+recommended_articles = []
+excluded_categories = []
+predicted_articles = []
+adaptive_recommendations = []
+
+def track_user_interactions(data):
+    user_interactions.append(data)
+    return {'message': 'User interaction tracked successfully', 'user_interactions': user_interactions}
+
+def analyze_reading_time(data):
+    reading_times.append(data)
+    return {'message': 'Reading time analyzed successfully', 'reading_times': reading_times}
+
+def adjust_recommendations(data):
+    click_behaviors.append(data)
+    return {'message': 'Recommendations adjusted successfully', 'click_behaviors': click_behaviors}
+
+def save_and_rank_categories(data):
+    global preferred_categories
+    preferred_categories.update(data)
+    return {'message': 'Preferred categories saved and ranked successfully', 'preferred_categories': preferred_categories}
+
+def update_preferences(data):
+    user_feedback.append(data)
+    return {'message': 'User preferences updated successfully', 'user_feedback': user_feedback}
+
+def recommend_similar_articles(data):
+    reading_history.append(data)
+    return {'message': 'Similar articles recommended successfully', 'reading_history': reading_history}
+
+def display_recommended_articles(data):
+    recommended_articles.append(data)
+    return {'message': 'Recommended articles displayed successfully', 'recommended_articles': recommended_articles}
+
+def exclude_categories(data):
+    excluded_categories.append(data)
+    return {'message': 'Categories excluded successfully', 'excluded_categories': excluded_categories}
+
+def predict_articles(data):
+    predicted_articles.append(data)
+    return {'message': 'Articles predicted successfully', 'predicted_articles': predicted_articles}
+
+def adapt_recommendations(data):
+    adaptive_recommendations.append(data)
+    return {'message': 'Recommendations adapted successfully', 'adaptive_recommendations': adaptive_recommendations}
+
+# Example manual call to each function:
+if __name__ == '__main__':
+    example_interaction = {'article_id': 1, 'action': 'clicked'}
+    print(track_user_interactions(example_interaction))
+
+    example_reading_time = {'article_id': 1, 'time_spent': 120}
+    print(analyze_reading_time(example_reading_time))
+
+    example_click = {'article_id': 2, 'click_type': 'like'}
+    print(adjust_recommendations(example_click))
+
+    example_categories = {'category': 'Technology', 'rank': 1}
+    print(save_and_rank_categories(example_categories))
+
+    example_feedback = {'article_id': 3, 'feedback': 'positive'}
+    print(update_preferences(example_feedback))
+
+    example_history = {'article_id': 4, 'read_time': 90}
+    print(recommend_similar_articles(example_history))
+
+    example_recommendation = {'article_id': 5, 'title': 'AI in 2024'}
+    print(display_recommended_articles(example_recommendation))
+
+    example_exclusion = {'category': 'Politics'}
+    print(exclude_categories(example_exclusion))
+
+    example_prediction = {'article_id': 6, 'title': 'Future of AI'}
+    print(predict_articles(example_prediction))
+
+    example_adaptive = {'category': 'Health', 'adjustment': 'increased'}
+    print(adapt_recommendations(example_adaptive))
